@@ -18,8 +18,8 @@ export function LoginPage() {
     try {
       await signIn(email, password);
       navigate("/");
-    } catch {
-      setError("Incorrect email or password.");
+    } catch (err: any) {
+      setError(err?.response?.data?.detail || err.message || "Incorrect email or password.");
     } finally {
       setLoading(false);
     }

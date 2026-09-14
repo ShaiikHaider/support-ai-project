@@ -18,9 +18,9 @@ export function RegisterPage() {
     setLoading(true);
     try {
       await signUp(email, fullName, password);
-      navigate("/login");
+      navigate("/");
     } catch (err: any) {
-      setError(err?.response?.data?.detail || "Could not create account.");
+      setError(err?.response?.data?.detail || err.message || "Could not create account.");
     } finally {
       setLoading(false);
     }

@@ -31,11 +31,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   async function signIn(email: string, password: string) {
     const { access_token } = await apiLogin(email, password);
     localStorage.setItem("access_token", access_token);
-    setUser(await fetchCurrentUser());
+    try {
+      setUser(await fetchCurrentUser());
+    } catch (err) {
+      localStorage.removeItem("access_token");
+      throw new Error("Failed to load user profile. Please try logging in again.");
+    }
   }
 
   async function signUp(email: string, fullName: string, password: string) {
-    await apiRegister(email, fullName, password);
+    const { access_token } = await apiRegister(email, fullName, password);
+    localStorage.setItem("access_token", access_token);
+    try {
+      setUser(await fetchCurrentUser());
+    } catch (err) {
+      localStorage.removeItem("access_token");
+      throw new Error("Account created successfully, but failed to load profile. Please log in manually.");
+    }
   }
 
   function signOut() {
