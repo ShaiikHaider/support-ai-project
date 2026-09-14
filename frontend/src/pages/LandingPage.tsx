@@ -12,10 +12,8 @@ const headlineWords = "AI-powered customer support that".split(" ");
 
 export function LandingPage() {
   const [index, setIndex] = useState(0);
-  const [fade, setFade] = useState(true);
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    return document.documentElement.classList.contains('dark') || true;
-  });
+  const [fade, setFade] = useState<boolean>(true);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
 
   useEffect(() => {
     if (isDarkMode) {
