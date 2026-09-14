@@ -18,7 +18,7 @@ export function RegisterPage() {
     setLoading(true);
     try {
       await signUp(email, fullName, password);
-      navigate("/");
+      navigate("/login", { state: { message: "Account created — please sign in" } });
     } catch (err: any) {
       let errorMessage = "Could not create account.";
       const detail = err?.response?.data?.detail;

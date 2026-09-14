@@ -40,14 +40,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   async function signUp(email: string, fullName: string, password: string) {
-    const { access_token } = await apiRegister(email, fullName, password);
-    localStorage.setItem("access_token", access_token);
-    try {
-      setUser(await fetchCurrentUser());
-    } catch (err) {
-      localStorage.removeItem("access_token");
-      throw new Error("Account created successfully, but failed to load profile. Please log in manually.");
-    }
+    await apiRegister(email, fullName, password);
   }
 
   function signOut() {

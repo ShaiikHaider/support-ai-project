@@ -1,11 +1,13 @@
 import { useState, type FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { HeroVisual } from "../components/HeroVisual";
 
 export function LoginPage() {
   const { signIn } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const successMessage = location.state?.message;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -52,6 +54,7 @@ export function LoginPage() {
               <Field label="Email address" type="email" value={email} onChange={setEmail} />
               <Field label="Password" type="password" value={password} onChange={setPassword} />
 
+              {successMessage && <p className="text-sm text-green-600 font-medium bg-green-50 px-3 py-2 rounded-lg border border-green-200">{successMessage}</p>}
               {error && <p className="text-sm text-red-500 font-medium">{error}</p>}
 
               <button
