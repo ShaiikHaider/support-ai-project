@@ -4,7 +4,6 @@ pydantic==2.10.4
 pydantic-settings==2.7.1
 sqlalchemy==2.0.36
 asyncpg==0.30.0
-psycopg2-binary==2.9.10
 alembic==1.14.0
 redis==5.2.1
 python-jose[cryptography]==3.3.0
@@ -19,3 +18,4 @@ tiktoken==0.8.0
 httpx==0.28.1
 python-dotenv==1.0.1
 tenacity==9.0.0
+chromadb==0.5.23
