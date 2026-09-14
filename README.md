@@ -176,8 +176,5 @@ Expected flow: Triage classifies as `billing` / high priority → Customer Conte
 - High-risk actions (`refund`, `account_deletion`, `subscription_cancellation`, `chargeback_dispute`, `data_export`, `identity_change`) are defined centrally in `app/core/config.py` and checked deterministically in addition to LLM judgment before anything is auto-executed or exempted from escalation.
 - All tool calls in `app/agents/tools.py` are mocked for this reference implementation (safe to run without live billing/CRM credentials) — swap in real API integrations for production use, keeping the low-risk/high-risk boundary intact.
 
----
+--
 
-## 7. What maps to the assignment's "Expected Output"
-
-The `TicketDetailPanel` component (frontend) and `TicketDetailOut` schema (backend) surface every required field: ticket status (resolved / requires more information / escalated), customer query, issue category, priority, retrieved knowledge, suggested resolution, recommended vs. performed actions, escalation status, full agent execution history (with per-agent timing), and the final response.
