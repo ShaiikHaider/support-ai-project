@@ -19,7 +19,16 @@ export function LoginPage() {
       await signIn(email, password);
       navigate("/");
     } catch (err: any) {
-      setError(err?.response?.data?.detail || err.message || "Incorrect email or password.");
+      let errorMessage = "Incorrect email or password.";
+      const detail = err?.response?.data?.detail;
+      if (typeof detail === "string") {
+        errorMessage = detail;
+      } else if (Array.isArray(detail)) {
+        errorMessage = detail[0]?.msg || "Validation error.";
+      } else if (err.message) {
+        errorMessage = err.message;
+      }
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
