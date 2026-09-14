@@ -2,38 +2,32 @@ services:
   - type: web
     name: support-ai-backend
     runtime: python
-    plan: starter
+    plan: free
+    rootDir: backend
     buildCommand: "pip install -r requirements.txt"
     startCommand: "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
-    healthCheckPath: /health
     envVars:
       - key: ENVIRONMENT
         value: production
       - key: JWT_SECRET_KEY
         generateValue: true
       - key: DATABASE_URL
-        fromDatabase:
-          name: support-ai-db
-          property: connectionString
+        sync: false
       - key: REDIS_URL
-        fromService:
-          type: redis
-          name: support-ai-redis
-          property: connectionString
-      - key: CORS_ORIGINS
-        value: '["https://your-frontend.vercel.app"]'
+        sync: false
+      - key: LLM_PROVIDER
+        value: openai
+      - key: LLM_BASE_URL
+        value: https://api.openai.com/v1
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_CHAT_MODEL
+        value: gpt-4o-mini
+      - key: LLM_REASONING_ENABLED
+        value: "false"
       - key: OPENAI_API_KEY
         sync: false
+      - key: CORS_ORIGINS
+        sync: false
       - key: CHROMA_PERSIST_DIR
-        value: /opt/render/project/src/backend/chroma_store
-
-databases:
-  - name: support-ai-db
-    plan: starter
-    databaseName: support_ai
-    user: support_ai
-
-  - type: redis
-    name: support-ai-redis
-    plan: starter
-    ipAllowList: []
+        value: /opt/render/project/src/chroma_store
