@@ -5,8 +5,6 @@ that triages, retrieves policy/FAQ knowledge (RAG), proposes and selectively
 executes resolutions, escalates high-risk cases to humans, and reviews its own
 output — paired with a React + TypeScript + Tailwind support console.
 
-Built for the assignment brief from Dr Ch Someswara Rao / Brightcone.ai Inc.
-
 ---
 
 ## 1. Architecture overview
