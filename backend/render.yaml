@@ -1,11 +1,10 @@
 services:
   - type: web
     name: support-ai-backend
-    runtime: python
+    runtime: docker
     plan: free
     rootDir: backend
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: ENVIRONMENT
         value: production
@@ -30,4 +29,4 @@ services:
       - key: CORS_ORIGINS
         sync: false
       - key: CHROMA_PERSIST_DIR
-        value: /opt/render/project/src/chroma_store
+        value: /app/chroma_store
