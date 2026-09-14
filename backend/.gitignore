@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+chroma_store/
+.venv/
+venv/

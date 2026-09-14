@@ -1,0 +1,12 @@
+node_modules/
+.env
+venv/
+chroma_store/
+__pycache__/
+*.pyc
+dist/
+.DS_Store
+
+test_groq.py
+get_latest_ticket.py
+patch_*.py
